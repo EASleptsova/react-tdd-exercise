@@ -1,24 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import NewNoteForm from "./NewNoteForm";
+import NoteList from "./NoteList";
 
 function App() {
+  const [notes, setNotes] = useState([]);
+  function handleSave(newNote) {
+    setNotes([newNote, ...notes]);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <NewNoteForm onSave={handleSave} />
+      <NoteList data={notes} />
+    </>
   );
 }
 
